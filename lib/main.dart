@@ -59,7 +59,9 @@ class _QuizPageState extends State<QuizPage> {
                       fontSize: 20.0,
                     )),
                 onPressed: () {
-                  icons.add(Icon(Icons.check, color: Colors.green));
+                  setState(() {
+                    icons.add(Icon(Icons.check, color: Colors.green));
+                  });
                 },
               ),
             ),
@@ -79,7 +81,9 @@ class _QuizPageState extends State<QuizPage> {
                   ),
                 ),
                 onPressed: () {
-                  icons.add(Icon(Icons.close, color: Colors.red));
+                  setState(() {
+                    icons.add(Icon(Icons.close, color: Colors.red));
+                  });
                 },
               ),
             ),
