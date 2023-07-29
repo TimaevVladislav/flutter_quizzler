@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'question.dart';
 
 class Questions {
@@ -42,7 +43,7 @@ class Questions {
   }
 
   void showIconQuestion() {
-    questions[questionId].answer
+    fetchQuestionStatus()
         ? icons.add(Icon(Icons.check, color: Colors.green))
         : icons.add(Icon(Icons.close, color: Colors.red));
   }
