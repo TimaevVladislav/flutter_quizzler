@@ -44,7 +44,6 @@ class Questions {
   }
 
   void showIconQuestion() {
-    print(questions[questionId].answer);
     questions[questionId].answer
         ? icons.add(Icon(Icons.check, color: Colors.green))
         : icons.add(Icon(Icons.close, color: Colors.red));
