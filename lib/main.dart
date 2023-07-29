@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'question.dart';
+import 'questions.dart';
+
+Questions question = Questions();
 
 void main() => runApp(Quizzler());
 
@@ -28,13 +30,6 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   int questionId = 0;
   List<Icon> icons = [];
-  List<Question> questions = [
-    Question(q: 'You can lead a cow down stairs but not up stairs.', a: false),
-    Question(
-        q: 'Approximately one quarter of human bones are in the feet.',
-        a: true),
-    Question(q: 'A slug\'s blood is green.', a: true)
-  ];
 
   void showIconQuestion(icon, color) {
     icons.add(Icon(icon, color: color));
@@ -52,7 +47,7 @@ class _QuizPageState extends State<QuizPage> {
               padding: EdgeInsets.all(10.0),
               child: Center(
                 child: Text(
-                  questions[questionId].question,
+                  question.questions[questionId].question,
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 25.0, color: Colors.white),
                 ),
@@ -73,7 +68,8 @@ class _QuizPageState extends State<QuizPage> {
                     )),
                 onPressed: () {
                   setState(() {
-                    questions[questionId].answer;
+                    questionId++;
+                    question.questions[questionId].answer;
                     showIconQuestion(Icons.check, Colors.green);
                   });
                 },
@@ -96,6 +92,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
                 onPressed: () {
                   setState(() {
+                    questionId++;
                     showIconQuestion(Icons.close, Colors.red);
                   });
                 },
