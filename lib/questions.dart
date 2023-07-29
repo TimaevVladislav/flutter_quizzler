@@ -1,6 +1,11 @@
+import 'dart:ffi';
+
+import 'package:flutter/material.dart';
 import 'question.dart';
 
 class Questions {
+  int questionId = 0;
+  List<Icon> icons = [];
   List<Question> questions = [
     Question('Some cats are actually allergic to humans', true),
     Question('You can lead a cow down stairs but not up stairs.', false),
@@ -28,4 +33,28 @@ class Questions {
         'In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home to eat.',
         true)
   ];
+
+  void clearQuestions() {
+    questionId = 0;
+    List<Icon> icons = [];
+  }
+
+  void nextQuestion() {
+    questionId < questions.length - 1 ? questionId++ : clearQuestions();
+  }
+
+  void showIconQuestion() {
+    print(questions[questionId].answer);
+    questions[questionId].answer
+        ? icons.add(Icon(Icons.check, color: Colors.green))
+        : icons.add(Icon(Icons.close, color: Colors.red));
+  }
+
+  String fetchQuestionTitle() {
+    return questions[questionId].question;
+  }
+
+  bool fetchQuestionStatus() {
+    return questions[questionId].answer;
+  }
 }

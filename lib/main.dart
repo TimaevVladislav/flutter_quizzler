@@ -28,13 +28,6 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  int questionId = 0;
-  List<Icon> icons = [];
-
-  void showIconQuestion(icon, color) {
-    icons.add(Icon(icon, color: color));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -47,7 +40,7 @@ class _QuizPageState extends State<QuizPage> {
               padding: EdgeInsets.all(10.0),
               child: Center(
                 child: Text(
-                  question.questions[questionId].question,
+                  question.fetchQuestionTitle(),
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 25.0, color: Colors.white),
                 ),
@@ -68,9 +61,8 @@ class _QuizPageState extends State<QuizPage> {
                     )),
                 onPressed: () {
                   setState(() {
-                    questionId++;
-                    question.questions[questionId].answer;
-                    showIconQuestion(Icons.check, Colors.green);
+                    question.nextQuestion();
+                    question.showIconQuestion();
                   });
                 },
               ),
@@ -92,14 +84,14 @@ class _QuizPageState extends State<QuizPage> {
                 ),
                 onPressed: () {
                   setState(() {
-                    questionId++;
-                    showIconQuestion(Icons.close, Colors.red);
+                    question.nextQuestion();
+                    question.showIconQuestion();
                   });
                 },
               ),
             ),
           ),
-          Row(children: icons)
+          Row(children: question.icons)
         ]);
   }
 }
